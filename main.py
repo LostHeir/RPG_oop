@@ -8,6 +8,7 @@ current_enemy = None
 if __name__ == '__main__':
     game = GameLogic(difficulty='easy')
     player = game.create_character(choice='none', name='LostHeir')
+    choice = 0
 
     while not game_over:
         if not current_enemy:
@@ -16,7 +17,12 @@ if __name__ == '__main__':
                   '1 - I shall introduce myself.\n'
                   '2 - I will talk to someone.\n'
                   '3 - The whole city must be purged! (Spawns enemy..)')
-            choice = int(input('--> '))
+            try:
+                choice = int(input('--> '))
+            except ValueError:
+                input('You really need to pick one of those options..\n'
+                      'Press any key to go back..')
+
             if choice == 1:
                 player.introduce()
             elif choice == 2:
@@ -25,7 +31,8 @@ if __name__ == '__main__':
             elif choice == 3:
                 current_enemy = game.spawn_enemy()
             else:
-                print('You really need to pick one of those options..')
+                input('You really need to pick one of those options..\n'
+                      'Press any key to go back..')
 
         else:
             player.attack_enemy(current_enemy)

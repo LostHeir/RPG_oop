@@ -13,7 +13,7 @@ class GameLogic:
 
     @staticmethod
     def create_character(choice, name):
-        return models.Warrior(name=name)
+        return models.Warrior(name=name, profession='warrior')
 
     def spawn_enemy(self):
         return models.Enemy(name=self.generate_name())

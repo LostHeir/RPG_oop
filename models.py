@@ -3,18 +3,27 @@ from my_utilities import clear
 
 
 class Hero:
-    def __init__(self, name, strength=0, agility=0, inteligence=0, hp=250, attack=10):
+    def __init__(self, name, profession, strength=0, agility=0, inteligence=0, hp=250, attack=10):
         self.name = name
         self.hp = hp
         self._strength = strength
         self._agility = agility
         self._inteligence = inteligence
         self._attack = attack
+        self.profession = profession
+
+    @property
+    def profession(self):
+        return self._profession
+
+    @profession.setter
+    def profession(self, profession):
+        self._profession = profession
 
     def introduce(self):
         clear()
         print(f'Sudden spotlight reveals a character..\n'
-              f'Hello, I am mighty {self.name}..')
+              f'Hello, I am mighty {self.profession} {self.name}..')
         print(f'{self.name} is flexling..\n'
               f'Current stats:\n'
               f'strength: {self._strength}\n'
