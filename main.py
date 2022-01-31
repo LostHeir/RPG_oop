@@ -3,6 +3,7 @@ from my_utilities import clear
 
 game_over = False
 current_enemy = None
+combat_state = False
 
 
 if __name__ == '__main__':
@@ -35,12 +36,21 @@ if __name__ == '__main__':
                       'Press any key to go back..')
 
         else:
-            player.attack_enemy(current_enemy)
+            if not combat_state:
+                print(f'{current_enemy.name} appears!\n')
+                combat_state = True
+            next_move = game.print_skills(skills=game.get_skills(player))
+            if next_move:
+                getattr(player, next_move)(enemy=current_enemy)
+            else:
+                continue
             current_enemy.attack_player(player=player)
             print(f'{player.name}: {player.hp}, {current_enemy.name}: {current_enemy.hp}')
             input()
+
             if player.hp <= 0:
                 game_over = True
             elif current_enemy.hp <= 0:
                 current_enemy = None
+                combat_state = False
 
