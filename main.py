@@ -1,25 +1,27 @@
 from game_logic import GameLogic
+from user_manager import check_user
 
 game_over = False
 current_enemy = None
 combat_state = False
-player_spawned = False
+player = None
+is_logged = False
 
 
 if __name__ == '__main__':
     game = GameLogic(difficulty='easy')
 
-    game.print_logo()
-    while not player_spawned:
+
+    while not is_logged:
+        game.print_logo()
+        login = input('Login: ')
+        password = input('Password: ')
+        is_logged = check_user(login, password)
+
+    while player is None:
         choice = game.choose_profession()
-        if choice and 4 > choice > 0:
-            if choice == 1:
-                player = game.create_character(profession='warrior', name='LostHeir')
-            elif choice == 2:
-                player = game.create_character(profession='mage', name='LostHeir')
-            elif choice == 3:
-                player = game.create_character(profession='rogue', name='LostHeir')
-            player_spawned = True
+        print(choice)
+        player = game.spawn_hero(choice)
 
     while not game_over:
         choice = 0
@@ -50,6 +52,7 @@ if __name__ == '__main__':
 
             if player.hp <= 0:
                 game_over = True
+                game.game_over()
             elif current_enemy.hp <= 0:
                 current_enemy = None
                 combat_state = False

@@ -1,7 +1,7 @@
 import models
 import random
 from my_utilities import clear
-from game_data import enemy_kind, enemy_adjective, logo
+from game_data import enemy_kind, enemy_adjective, logo, game_over
 
 
 class GameLogic:
@@ -10,6 +10,7 @@ class GameLogic:
 
     @staticmethod
     def print_logo():
+        clear()
         print(logo)
         print('Welcome to Debonair Dungeon!')
         input('Press any key to begin..')
@@ -100,4 +101,21 @@ class GameLogic:
             input('You really need to pick one of those options..\n'
                   'Press any key to go back..')
             return None
+
+    def spawn_hero(self, choice):
+        if choice and 4 > choice > 0:
+            if choice == 1:
+                player = self.create_character(profession='warrior', name='LostHeir')
+            elif choice == 2:
+                player = self.create_character(profession='mage', name='LostHeir')
+            elif choice == 3:
+                player = self.create_character(profession='rogue', name='LostHeir')
+            else:
+                raise RuntimeError('Player didnt spawned.')
+            return player
+
+    @staticmethod
+    def game_over():
+        print(game_over)
+        input()
 
