@@ -11,7 +11,6 @@ is_logged = False
 if __name__ == '__main__':
     game = GameLogic(difficulty='easy')
 
-
     while not is_logged:
         game.print_logo()
         login = input('Login: ')

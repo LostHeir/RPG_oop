@@ -14,7 +14,8 @@ salt = b'$2b$12$73UojrOL94QjzMGwdm1wp.'
 # cur.execute(statement)
 # print(cur.fetchall())
 #
-# Used to inster data into db
+# Used to instert data into db
+
 
 def check_user(user, password):
     password = bcrypt.hashpw(password.encode('utf-8'), salt)

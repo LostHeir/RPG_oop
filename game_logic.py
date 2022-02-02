@@ -15,7 +15,8 @@ class GameLogic:
         print('Welcome to Debonair Dungeon!')
         input('Press any key to begin..')
 
-    def choose_profession(self):
+    @staticmethod
+    def choose_profession():
         print('Who you are?\n'
               '1 - Warrior\n'
               '2 - Mage\n'
@@ -26,7 +27,8 @@ class GameLogic:
             input('You really need to pick one of those options..\n'
                     'Press any key to go back..')
 
-    def chose_action(self):
+    @staticmethod
+    def chose_action():
         clear()
         print('What would You like to do adventurer?\n'
               '1 - I shall introduce myself.\n'
